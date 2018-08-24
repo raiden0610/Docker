@@ -8,10 +8,24 @@ CMD ["/sbin/entrypoint.sh"]
 ARG cachet_ver
 ARG archive_url
 
-ENV cachet_ver ${cachet_ver:-master}
+ENV cachet_ver v2.3.15
 ENV archive_url ${archive_url:-https://github.com/cachethq/Cachet/archive/${cachet_ver}.tar.gz}
 
 ENV COMPOSER_VERSION 1.6.3
+
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV APP_URL ${APP_URL}
+ENV APP_LOG errorlog
+ENV APP_KEY ${APP_KEY}
+
+ENV DB_DRIVER mysql
+ENV DB_HOST ${MYSQL_ADDON_HOST}
+ENV DB_DATABASE ${MYSQL_ADDON_DB}
+ENV DB_USERNAME ${MYSQL_ADDON_USER}
+ENV DB_PASSWORD ${MYSQL_ADDON_PASSWORD}
+ENV DB_PORT ${MYSQL_ADDON_PORT}
+ENV DB_PREFIX chq_
 
 RUN apk add --no-cache --update \
     postgresql-client \
